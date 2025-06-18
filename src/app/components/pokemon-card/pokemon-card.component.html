@@ -1,0 +1,10 @@
+<span class="pokemon-card__number">#{{ number }}</span>
+<span class="pokemon-card__name">{{ name }}</span>
+
+<div class="pokemon-card__detail">
+  <ol class="pokemon-card__types">
+    <ng-content select="[pokemon-types]" />
+  </ol>
+
+  <img class="pokemon-card__image" [src]=imageUrl [alt]=imageAlt>
+</div>
