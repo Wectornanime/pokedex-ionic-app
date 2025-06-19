@@ -9,11 +9,18 @@ export interface PokemonListResponse {
 }
 
 export interface PokemonDetails {
+  ability: PokemonAbilities[];
   id: number;
   name: string;
   height: number;
   weight: number;
   types: PokemonTypeSlot[];
+  species: {
+    name: string;
+    url: string;
+  };
+  stats: PokemonStats[];
+  base_experience: number,
   sprites: {
     front_default: string;
     other: {
@@ -37,4 +44,22 @@ export interface PokemonTypeSlot {
     name: string;
     url: string;
   };
+}
+
+export interface PokemonStats {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  }
+}
+
+export interface PokemonAbilities {
+  ability: {
+    name: string;
+    url: string;
+  },
+  is_hidden: boolean;
+  slot: number;
 }

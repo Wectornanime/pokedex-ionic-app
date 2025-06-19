@@ -11,7 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <main>
+  <main [ngStyle]="{ 'background-color': pokemonTypeColor }">
     <section class="details-page__pokemon">
       <p class="details-page__number">#{{ pokemonNumber }}</p>
       <ol class="details-page__types">
@@ -37,6 +37,10 @@
           <tr *ngFor="let stat of stats">
             <th>{{ stat.stat.name }}</th>
             <td>{{ stat.base_stat }}</td>
+          </tr>
+          <tr>
+            <th>Base Experience</th>
+            <td>{{ base_experience }}</td>
           </tr>
         </tbody>
       </table>
