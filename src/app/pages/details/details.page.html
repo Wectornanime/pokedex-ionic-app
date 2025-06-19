@@ -1,19 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" />
+    </ion-buttons>
     <ion-title>{{ pokemonName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/home" />
-      </ion-buttons>
-      <ion-title size="large">{{ pokemonName }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <main [ngStyle]="{ 'background-color': pokemonTypeColor }">
     <section class="details-page__pokemon">
       <p class="details-page__number">#{{ pokemonNumber }}</p>
@@ -27,6 +21,10 @@
       <h3>About</h3>
       <table class="details-page__table-about">
         <tbody>
+          <tr>
+            <th>Abilities</th>
+            <td>{{ abilities | titlecase }}</td>
+          </tr>
           <tr *ngFor="let item of about | keyvalue">
             <th>{{ item.key }}</th>
             <td>{{ item.value }}</td>

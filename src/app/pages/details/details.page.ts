@@ -29,7 +29,7 @@ export class DetailsPage implements OnInit {
     weight: number;
   };
 
-  abilityList!: PokemonAbilities[];
+  abilities = '';
   stats!: PokemonStats[]
   base_experience!: number;
 
@@ -46,7 +46,9 @@ export class DetailsPage implements OnInit {
     }).subscribe(response => {
       this.pokemonNumber = response.id;
 
-      this.abilityList = response.ability;
+      if (response.abilities) {
+        this.abilities = response.abilities.map(a => a.ability.name).join(', ');
+      }
 
       this.about = {
         height: response.height,

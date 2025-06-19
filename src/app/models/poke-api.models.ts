@@ -9,7 +9,7 @@ export interface PokemonListResponse {
 }
 
 export interface PokemonDetails {
-  ability: PokemonAbilities[];
+  abilities: PokemonAbilities[];
   id: number;
   name: string;
   height: number;
