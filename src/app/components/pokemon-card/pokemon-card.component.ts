@@ -1,11 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { PokeApiService } from 'src/app/services/poke-api/poke-api.service';
+import { PokemonTypeCardComponent } from '../pokemon-type-card/pokemon-type-card.component';
+import { NgFor } from '@angular/common';
+import { PokemonTypeSlot } from 'src/app/models/poke-api.models';
+import { getColor } from 'src/app/utils/pokemon-type-color-map';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.scss'],
+  imports: [PokemonTypeCardComponent, NgFor]
 })
+
 export class PokemonCardComponent implements OnInit {
 
   @Input() pokemonName!: string;
@@ -14,6 +20,7 @@ export class PokemonCardComponent implements OnInit {
   name!: string;
   imageUrl!: string;
   imageAlt!: string;
+  typeList!: PokemonTypeSlot[]
 
   constructor(private pokeApi: PokeApiService) { }
 
@@ -25,6 +32,12 @@ export class PokemonCardComponent implements OnInit {
       this.number = response.id;
       this.imageUrl = response.sprites.front_default;
       this.imageAlt = `Imagem do pokemon ${this.name}`;
+      this.typeList = response.types;
     })
+  }
+
+  @HostBinding('style.backgroundColor')
+  get bgColor(): string {
+    return getColor(this.typeList[0].type.name);
   }
 }

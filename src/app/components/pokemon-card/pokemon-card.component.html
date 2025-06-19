@@ -3,7 +3,7 @@
 
 <div class="pokemon-card__detail">
   <ol class="pokemon-card__types">
-    <ng-content select="[pokemon-types]" />
+    <app-pokemon-type-card *ngFor="let type of typeList" [type]="type.type.name" />
   </ol>
 
   <img class="pokemon-card__image" [src]=imageUrl [alt]=imageAlt>
