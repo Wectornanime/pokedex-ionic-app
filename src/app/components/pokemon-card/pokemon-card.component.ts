@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PokeApiService } from 'src/app/services/poke-api/poke-api.service';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -7,12 +8,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PokemonCardComponent implements OnInit {
 
-  @Input() number!: number;
-  @Input() name!: string;
-  @Input() imageUrl!: string;
-  @Input() imageAlt: string = `Imagem do pokemon ${this.name}`
+  @Input() pokemonName!: string;
 
-  constructor() { }
+  number!: number;
+  name!: string;
+  imageUrl!: string;
+  imageAlt!: string;
 
-  ngOnInit() {}
+  constructor(private pokeApi: PokeApiService) { }
+
+  ngOnInit() {
+    this.pokeApi.getPokemonDetailsByPokemonName({
+      pokemonName: this.pokemonName
+    }).subscribe(response => {
+      this.name = response.name;
+      this.number = response.id;
+      this.imageUrl = response.sprites.front_default;
+      this.imageAlt = `Imagem do pokemon ${this.name}`;
+    })
+  }
 }
