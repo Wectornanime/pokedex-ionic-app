@@ -16,7 +16,7 @@
   <main>
     <ul id="pokemonList" class="home-page__pokemons" *ngIf="pokemonList">
       <li *ngFor="let pokemon of pokemonList.results">
-        <app-pokemon-card [pokemonName]="pokemon.name" />
+        <app-pokemon-card [pokemonName]="pokemon.name" [routerLink]="['/details', pokemon.name]" />
       </li>
     </ul>
   </main>

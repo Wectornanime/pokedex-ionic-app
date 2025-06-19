@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgFor, NgStyle } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { PokemonTypeCardComponent } from 'src/app/components/pokemon-type-card/pokemon-type-card.component';
 import { PokemonAbilities, PokemonStats, PokemonTypeSlot } from 'src/app/models/poke-api.models';
@@ -13,8 +12,9 @@ import { getColor } from 'src/app/utils/pokemon-type-color-map';
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, PokemonTypeCardComponent, NgFor, NgStyle]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, PokemonTypeCardComponent, NgFor, NgStyle, IonButtons, IonBackButton]
 })
+
 export class DetailsPage implements OnInit {
   pokemonName!: string;
   pokemonTypeColor!: string;
@@ -46,7 +46,7 @@ export class DetailsPage implements OnInit {
     }).subscribe(response => {
       this.pokemonNumber = response.id;
 
-      this.abilityList = response.ability,
+      this.abilityList = response.ability;
 
       this.about = {
         height: response.height,
