@@ -33,11 +33,10 @@ export class PokemonCardComponent implements OnInit {
       this.imageUrl = response.sprites.front_default;
       this.imageAlt = `Imagem do pokemon ${this.name}`;
       this.typeList = response.types;
+
+      this.bgColor = getColor(this.typeList[0].type.name)
     })
   }
 
-  @HostBinding('style.backgroundColor')
-  get bgColor(): string {
-    return getColor(this.typeList[0].type.name);
-  }
+  @HostBinding('style.backgroundColor') bgColor = 'lightgray';
 }
