@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" />
+    </ion-buttons>
+    <ion-title>{{ pokemonName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <main [ngStyle]="{ 'background-color': pokemonTypeColor }">
+    <section class="details-page__pokemon">
+      <p class="details-page__number">#{{ pokemonNumber }}</p>
+      <ol class="details-page__types">
+        <app-pokemon-type-card *ngFor="let type of typeList" [type]="type.type.name" />
+      </ol>
+      <img class="details-page__image" [src]=imageUrl alt="">
+    </section>
+
+    <section class="details-page__details">
+      <h3>About</h3>
+      <table class="details-page__table-about">
+        <tbody>
+          <tr>
+            <th>Abilities</th>
+            <td>{{ abilities | titlecase }}</td>
+          </tr>
+          <tr *ngFor="let item of about | keyvalue">
+            <th>{{ item.key }}</th>
+            <td>{{ item.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Base Stats</h3>
+      <table class="details-page__table-stats">
+        <tbody>
+          <tr *ngFor="let stat of stats">
+            <th>{{ stat.stat.name }}</th>
+            <td>{{ stat.base_stat }}</td>
+          </tr>
+          <tr>
+            <th>Base Experience</th>
+            <td>{{ base_experience }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+</ion-content>

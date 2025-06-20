@@ -1,0 +1,10 @@
+<span class="pokemon-card__number">#{{ number }}</span>
+<span class="pokemon-card__name">{{ name }}</span>
+
+<div class="pokemon-card__detail">
+  <ol class="pokemon-card__types">
+    <app-pokemon-type-card *ngFor="let type of typeList" [type]="type.type.name" />
+  </ol>
+
+  <img class="pokemon-card__image" [src]=imageUrl [alt]=imageAlt>
+</div>

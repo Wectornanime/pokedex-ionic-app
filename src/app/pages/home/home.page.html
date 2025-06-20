@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Pokédex
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Pokédex</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <main>
+    <ul id="pokemonList" class="home-page__pokemons" *ngIf="pokemonList">
+      <li *ngFor="let pokemon of pokemonList.results">
+        <app-pokemon-card [pokemonName]="pokemon.name" [routerLink]="['/details', pokemon.name]" />
+      </li>
+    </ul>
+  </main>
+</ion-content>
