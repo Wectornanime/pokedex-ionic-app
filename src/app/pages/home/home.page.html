@@ -14,10 +14,14 @@
   </ion-header>
 
   <main>
-    <ul id="pokemonList" class="home-page__pokemons" *ngIf="pokemonList">
-      <li *ngFor="let pokemon of pokemonList.results">
+    <ul id="pokemonList" class="home-page__pokemons">
+      <li *ngFor="let pokemon of pokemonList">
         <app-pokemon-card [pokemonName]="pokemon.name" [routerLink]="['/details', pokemon.name]" />
       </li>
     </ul>
   </main>
+
+  <ion-infinite-scroll (ionInfinite)="loadPokemons($event)" threshold="100px">
+    <ion-infinite-scroll-content loadingText="Carregando mais..." />
+  </ion-infinite-scroll>
 </ion-content>
